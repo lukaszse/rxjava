@@ -10,17 +10,23 @@ public class Variants {
         Observable<String> source = Observable.just("Adam", "Ewa", "Kasia");
         Observable<String> source2 = Observable.empty();
 
+
+        // single
         source.first("Name")
                 .subscribe(System.out::println);
 
         Single.just("Adam").subscribe(System.out::println);
 
+
+        // maybe
         source.firstElement()
                 .subscribe(System.out::println);
 
         source2.firstElement()
                 .subscribe(System.out::println, err -> System.out.println("err" + err), () -> System.out.println("completed"));
 
+
+        // completable
         Completable completable = Completable.complete();
 
         Completable.fromRunnable(() -> System.out.println("Some process excecuting"))
